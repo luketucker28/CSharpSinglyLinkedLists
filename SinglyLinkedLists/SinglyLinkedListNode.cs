@@ -34,7 +34,7 @@ namespace SinglyLinkedLists
 
         public static bool operator <(SinglyLinkedListNode node1, SinglyLinkedListNode node2)
         {
-                    
+               
             // This implementation is provided for your convenience.
             return node1.CompareTo(node2) < 0;
         }
@@ -54,10 +54,11 @@ namespace SinglyLinkedLists
         }
 
         // READ: http://msdn.microsoft.com/en-us/library/system.icomparable.compareto.aspx
-        public int CompareTo(Object obj)
-        {
-            throw new NotImplementedException();
-        }
+        public int CompareTo(Object obj) {
+            return this.value.CompareTo(obj.ToString());
+       
+            }    
+        
 
         public bool IsLast()
         {
