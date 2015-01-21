@@ -5,8 +5,10 @@ using System.Text;
 
 namespace SinglyLinkedLists
 {
-    public class SinglyLinkedList
+    public class SinglyLinkedList 
     {
+        private SinglyLinkedListNode firstNode;
+    
         public SinglyLinkedList()
         {
             // NOTE: This constructor isn't necessary, once you've implemented the constructor below.
@@ -27,18 +29,30 @@ namespace SinglyLinkedLists
 
         public void AddAfter(string existingValue, string value)
         {
-            throw new NotImplementedException();
+            if (firstNode == null)
+            {
+                throw new ArgumentNullException("firstNode is null");
+            }
+           
+
         }
 
         public void AddFirst(string value)
         {
-            throw new NotImplementedException();
+           // throw new NotImplementedException();
         }
 
         public void AddLast(string value)
         {
-            throw new NotImplementedException();
-        }
+            if (firstNode == null)
+            {
+                firstNode = new SinglyLinkedListNode(value);
+            }
+            else
+            {
+                firstNode.Next = new SinglyLinkedListNode(value);
+            }
+            }
 
         // NOTE: There is more than one way to accomplish this.  One is O(n).  The other is O(1).
         public int Count()
@@ -53,7 +67,14 @@ namespace SinglyLinkedLists
 
         public string First()
         {
-            throw new NotImplementedException();
+           if (firstNode == null)
+           {
+               return null;
+           }
+           else
+           {
+               return firstNode.Value;
+           }
         }
 
         public int IndexOf(string value)
@@ -86,7 +107,14 @@ namespace SinglyLinkedLists
 
         public string[] ToArray()
         {
-            throw new NotImplementedException();
+            List<string> res = new List<string>();
+            SinglyLinkedListNode presentNode = firstNode;
+            while (presentNode != null)
+            {
+                res.Add(presentNode.Value);
+                presentNode = presentNode.Next;
+            }
+            return res.ToArray();
         }
     }
 }
