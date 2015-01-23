@@ -5,10 +5,10 @@ using System.Text;
 
 namespace SinglyLinkedLists
 {
-    public class SinglyLinkedList 
+    public class SinglyLinkedList
     {
         private SinglyLinkedListNode firstNode;
-    
+
         public SinglyLinkedList()
         {
             // NOTE: This constructor isn't necessary, once you've implemented the constructor below.
@@ -33,13 +33,13 @@ namespace SinglyLinkedLists
             {
                 throw new ArgumentNullException("firstNode is null");
             }
-           
+
 
         }
 
         public void AddFirst(string value)
         {
-           // throw new NotImplementedException();
+            // throw new NotImplementedException();
         }
 
         public void AddLast(string value)
@@ -50,10 +50,21 @@ namespace SinglyLinkedLists
             }
             else
             {
-                firstNode.Next = new SinglyLinkedListNode(value);
-            }
-            }
 
+                SinglyLinkedListNode node = this.firstNode;
+                while (true)
+                {
+                    if (node.Next == null)
+                    {
+                        break;
+                    }
+
+                    node = node.Next;
+
+                }
+                node.Next = new SinglyLinkedListNode(value);
+            }
+        }
         // NOTE: There is more than one way to accomplish this.  One is O(n).  The other is O(1).
         public int Count()
         {
@@ -62,31 +73,42 @@ namespace SinglyLinkedLists
 
         public string ElementAt(int index)
         {
-         SinglyLinkedListNode node = this.firstNode;
+            SinglyLinkedListNode node = firstNode;
             if (node == null)
             {
-                throw new ArgumentOutOfRangeException();    
+                throw new ArgumentOutOfRangeException();
             }
-            else {
-            for (int i = 0; i < index; i++)
+            else
             {
-                node = node.Next;    
-            }
-            return node.Value;
+                for (int i = 0; i < index; i++)
+                {
+                    node = node.Next;
+                }
+                return node.Value;
             }
         }
-        
 
+            
+      public override string ToString()
+        {
+            SinglyLinkedListNode node = firstNode;
+            if (node == null)
+            {
+                return "{ }";
+            }
+            return "{ \"" + node.ToString() + "\" }";
+        
+}
         public string First()
         {
-           if (firstNode == null)
-           {
-               return null;
-           }
-           else
-           {
-               return firstNode.Value;
-           }
+            if (firstNode == null)
+            {
+                return null;
+            }
+            else
+            {
+                return firstNode.Value;
+            }
         }
 
         public int IndexOf(string value)
@@ -104,8 +126,27 @@ namespace SinglyLinkedLists
         // HINT 3: If you highlight code and right click, you can use the refactor menu to extract a method for you...
         public string Last()
         {
-            throw new NotImplementedException();
+            if (firstNode == null)
+            {
+                return null;
+            }
+            int counter = 0;
+            SinglyLinkedListNode node = firstNode;
+            while (true)
+            {
+                if (node.Next == null)
+                {
+                    break;
+                }
+                node = node.Next;
+                counter++;
+            }
+            return this.ElementAt(counter);
         }
+
+
+
+
 
         public void Remove(string value)
         {
@@ -119,14 +160,9 @@ namespace SinglyLinkedLists
 
         public string[] ToArray()
         {
-            List<string> res = new List<string>();
-            SinglyLinkedListNode presentNode = firstNode;
-            while (presentNode != null)
-            {
-                res.Add(presentNode.Value);
-                presentNode = presentNode.Next;
+           
+             throw new NotImplementedException();
+             
             }
-            return res.ToArray();
         }
     }
-}

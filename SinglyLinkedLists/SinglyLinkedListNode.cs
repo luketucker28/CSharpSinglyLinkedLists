@@ -62,11 +62,7 @@ namespace SinglyLinkedLists
 
         public bool IsLast()
         {
-            if (this.Next == null) 
-            {
-                return true;
-            }
-            return false;
+            return next == null;
            
             
         }
