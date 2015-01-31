@@ -68,8 +68,9 @@ namespace SinglyLinkedLists
         }
         public override string ToString()
         {
-            return Value;
+            return this.value;
         }
+
         public override bool Equals(object obj)
         {
             if (this.GetType() == obj.GetType())
