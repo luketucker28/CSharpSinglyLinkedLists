@@ -26,9 +26,21 @@ namespace SinglyLinkedLists
 
         // READ: http://msdn.microsoft.com/en-us/library/6x16t2tx.aspx
         public string this[int i]
-        {
-            get { throw new NotImplementedException(); }
-            set { throw new NotImplementedException(); }
+        {   
+            
+            get{ return ElementAt(i);}
+            set {throw new NotImplementedException();}
+                
+        //        SinglyLinkedList list = new SinglyLinkedList();
+        //        var index = list.Remove(NodeAt(i));
+        //        SinglyLinkedListNode node = firstNode;
+        //        while (i < Count()) {
+                
+        //        node = node.Next;
+        //         i++;
+        //}
+                
+        //        = value; }
         }
 
        
@@ -107,12 +119,32 @@ namespace SinglyLinkedLists
         // NOTE: There is more than one way to accomplish this.  One is O(n).  The other is O(1).
         public int Count()
         {
-            throw new NotImplementedException();
-        }
-        public string ElementAt(int index)
-        {
+            int counter = 0;
+
             SinglyLinkedListNode node = firstNode;
             if (node == null)
+            {
+                counter = 0;
+                return counter;
+            }
+            else {
+                    while(node != null) { 
+                        counter++;
+                        node = node.Next;
+                        }
+                    return counter;      
+                    }
+                    
+                }
+            //CountChangesOnRemoval() {
+            //    if ()
+            //}
+
+        public string ElementAt(int index)
+        {
+
+            SinglyLinkedListNode node = firstNode;
+            if (node == null || Count() < index)
             {
                 throw new ArgumentOutOfRangeException();
             }
@@ -120,13 +152,12 @@ namespace SinglyLinkedLists
             {
                 for (int i = 0; i < index; i++)
                 {
-                    node = node.Next;
+                        node = node.Next;
+                    }                              
+                    return node.Value;
                 }
-                return node.Value;
             }
-        }
-
-
+        
         public override string ToString()
         {
             StringBuilder Empty = new StringBuilder();
@@ -158,11 +189,35 @@ namespace SinglyLinkedLists
                 return firstNode.Value;
             }
         }
-
+    
         public int IndexOf(string value)
         {
-            throw new NotImplementedException();
+           
+            var counter = 0;
+            int length = Count();
+
+            if (value == ElementAt(length))
+            {
+                return length;
+            }
+            for (var index = 0; index < length; index++)
+            {
+                if (ElementAt(index) == value)
+                {
+
+                    counter = (index);  
+                        return counter;
+                   
+                }
+                              
+                else { 
+                    counter = -1;
+                    return counter;
+                }
+            }
+            return counter;
         }
+    
         public bool IsSorted()
         {
             throw new NotImplementedException();
@@ -243,27 +298,35 @@ namespace SinglyLinkedLists
 
 
 
-       //ublic void ListRemoveFirstNode()
-       // {
-       //  p    SinglyLinkedList list = new SinglyLinkedList();
-       //     SinglyLinkedListNode node = firstNode;
-       //     var temp = node.Next;
-       //     firstNode = temp;
-       // }
+        
 
-
-        public void Remove(string value)
+            public void Remove(string value)
         {
-            List<string> list = new List<string>();
-            SinglyLinkedListNode node = firstNode;
-            if (node == firstNode) 
+            var index = 0;
+            var current = firstNode;
+            SinglyLinkedListNode prevNode = null;
+            
+                while(index < Count())
             {
-
-                list.Remove(firstNode.Value);
-                
-            }
-           
+                if (current.Value == value)
+                {
+                    if (prevNode == null)
+                        firstNode = current.Next;
+                    else
+                        prevNode.Next = current.Next;
+                    return;
+                }
+                prevNode = current;
+                current = current.Next;
+            } 
+            return;
         }
+        
+                
+           
+              
+                    
+        
 
       
 
